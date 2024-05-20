@@ -43,6 +43,12 @@
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
+          {% if request.user.is_authenticated %}
+              <a href="{% url 'users:logout' %}" class="btn btn-warning ms-3">Logout</a>
+          {% else %}
+            <a href="{% url 'users:register' %}" class="btn btn-success mx-3">Register</a>
+            <a href="{% url 'users:login' %}" class="btn btn-primary">Login</a>
+          {% endif %}
       </form>
     </div>
   </div>

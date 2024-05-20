@@ -3,13 +3,13 @@
 {% block content %}
 
     <h1>E commerce website</h1>
-    <div class="continer">
+    <div class="container">
         <div class="col-md-12 p-5">
             {% for product in products %}
                 <div class="card" style="width: 18rem;">
                     <img src="{{ product.product_image.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <a href="{% url 'detail' product.slug %}">
+                        <a href="{% url 'products:detail' product.slug %}">
                             <h5 class="card-title">{{ product.name }}</h5>
                         </a>
                         <p class="card-text">{{ product.description }}</p>
