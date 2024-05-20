@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>E commerce website</h1>
+    <div class="continer">
+        <div class="col-md-12 p-5">
+            {% for product in products %}
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ product.product_image.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="{% url 'detail' product.slug %}">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                        </a>
+                        <p class="card-text">{{ product.description }}</p>
+                        <a href="#" class="btn btn-primary">Buy</a>
+                        <span class="ms-5 fw-bolder">${{ product.price }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
