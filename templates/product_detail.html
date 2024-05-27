@@ -40,16 +40,15 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    {% for review in product_reviews %}
-                        <div class="card p-5">
-                            <div class="card-title">
+                    <ul class="list-group list-group-flush">
+                        {% for review in product_reviews %}
+                            <li class="list-group-item">
                                 <h5>{{ review.user.username }} | {{ review.created_at }}</h5>
-                            </div>
-                            <div class="card-body">
                                 <p>{{ review.review }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
                 </div>
             </div>
 

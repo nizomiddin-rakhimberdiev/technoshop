@@ -21,6 +21,6 @@ def detail_page(request, slug):
         ProductReview.objects.create(user=user, product=product, review=review)
 
     product = get_object_or_404(Product, slug=slug)
-    product_reviews = ProductReview.objects.all()
+    product_reviews = ProductReview.objects.all().order_by('-created_at').filter(product=product)
     context = {'product': product, 'product_reviews': product_reviews}
     return render(request, 'product_detail.html', context)
