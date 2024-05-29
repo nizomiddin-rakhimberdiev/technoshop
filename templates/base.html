@@ -44,6 +44,9 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ search_query }}">
         <button class="btn btn-outline-success" type="submit">Search</button>
           {% if request.user.is_authenticated %}
+              {% if request.user.is_staff %}
+                  <a href="{% url 'products:create_product' %}" class="btn btn-warning ms-3">Create Product</a>
+              {% endif %}
               <a href="{% url 'users:logout' %}" class="btn btn-warning ms-3">Logout</a>
           {% else %}
             <a href="{% url 'users:register' %}" class="btn btn-success mx-3">Register</a>
