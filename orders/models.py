@@ -9,7 +9,7 @@ class Order(models.Model):
     total_amount = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.user.username
+        return f"Order {self.id}"
 
 
 class OrderItem(models.Model):
@@ -18,4 +18,4 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.product.name
+        return f"{self.quantity} of {self.product.name} in Order {self.order.id}"

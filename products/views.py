@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
+from products.forms import EditReviewForm
 from products.models import Product, ProductReview
 
 
@@ -24,3 +25,26 @@ def detail_page(request, slug):
     product_reviews = ProductReview.objects.all().order_by('-created_at').filter(product=product)
     context = {'product': product, 'product_reviews': product_reviews}
     return render(request, 'product_detail.html', context)
+
+
+def edit_review(request, slug, id):
+    product = get_object_or_404(Product, slug=slug)
+    review = get_object_or_404(ProductReview, id=id, product=product)
+    if request.method == "POST":
+        form = EditReviewForm(instance=review, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products:detail', slug=slug)
+    else:
+        form = EditReviewForm(instance=review)
+        context = {'form': form}
+    return render(request, 'edit_review.html', context)
+
+
+def delete_review(request, slug, id):
+    review = get_object_or_404(ProductReview, id=id)
+    review.delete()
+    return redirect("products:detail", slug=slug)
+
+
+def create_product(request, slug):

@@ -18,7 +18,7 @@
                     <h3>{{ product.price }}</h3>
                     <p>Standart yetkazib berish
                         Manzilga qarab 4 soatdan 3 kungacha yetkazib beriladi</p>
-                    <a href="" class="btn btn-success">Savatchaga qo'shish</a>
+                    <a href="{% url 'orders:order_create' %}" class="btn btn-success">Buyurtma berish</a>
                 </div>
             </div>
             <div class="row">
@@ -43,7 +43,10 @@
                     <ul class="list-group list-group-flush">
                         {% for review in product_reviews %}
                             <li class="list-group-item">
-                                <h5>{{ review.user.username }} | {{ review.created_at }}</h5>
+                                <h5>{{ review.user.username }} | {{ review.created_at }}
+                                    <a class="btn btn-warning" href="{% url 'products:edit_review' product.slug review.id %}">edit</a>
+                                    <a class="btn btn-danger" href="{% url 'products:delete_review' product.slug review.id %}">del</a>
+                                </h5>
                                 <p>{{ review.review }}</p>
                             </li>
                         {% endfor %}
