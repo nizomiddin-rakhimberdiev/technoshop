@@ -23,7 +23,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     product_image = models.ImageField(upload_to='static/images/products/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

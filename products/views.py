@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from products.forms import EditReviewForm
+from products.forms import EditReviewForm, CreateProductForm
 from products.models import Product, ProductReview
 
 
@@ -47,4 +47,13 @@ def delete_review(request, slug, id):
     return redirect("products:detail", slug=slug)
 
 
-def create_product(request, slug):
+def create_product(request):
+    if request.method == "POST":
+        form = CreateProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('products:index')
+    else:
+        form = CreateProductForm()
+        context = {'form': form}
+    return render(request, 'create_product.html', context)
