@@ -20,7 +20,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    price = models.PositiveIntegerField()
+    price = models.IntegerField(default=1)
     product_image = models.ImageField(upload_to='static/images/products/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)
