@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
+from products.models import Product
 from products.views import home_page
 from users.forms import RegisterForm
 
@@ -34,3 +35,6 @@ def register_page(request):
 def logout_page(request):
     logout(request)
     return redirect('products:index')
+
+
+

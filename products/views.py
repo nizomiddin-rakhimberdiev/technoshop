@@ -56,3 +56,5 @@ def create_product(request):
     else:
         form = CreateProductForm()
     return render(request, 'create_product.html', context={'form': form})
+
+
