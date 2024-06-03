@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+
 {#    <header>#}
 {#        <nav>#}
 {#            <ul>#}
@@ -23,7 +23,7 @@
                                 <h5 class="card-title">{{ product.name }}</h5>
                             </a>
                             <p class="card-text">{{ product.description | truncatechars:100 }}</p>
-                            <a href="#" class="btn btn-primary">Buy</a>
+                            <a href="{% url 'orders:create_order' product.slug %}" class="btn btn-primary">Get order</a>
                             <span class="ms-5 fw-bolder">${{ product.price }}</span>
                         </div>
                     </div>
