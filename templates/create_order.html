@@ -7,13 +7,13 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>{{ product.name }}</h3>
-                <form method="post" class="form-conterol">
+                <form method="post" class="form-control">
                     {% csrf_token %}
-                    <label for="quantity">Mahsulot soni:</label>
+                    <label for="quantity">Mahsulot soni:</label><br>
                     <input type="number" id="quantity" name="quantity">
-                    <label for="address">Mahsulot yetkazib berilishi kerak bo'lgan adres:</label>
-                    <input type="text" id="address" name="address">
-                    
+                    <label for="address">Mahsulot yetkazib berilishi kerak bo'lgan adres:</label><br>
+                    <input type="text" id="address" name="address"><br><br>
+
                     <button class="btn btn-primary">Buyurtmani tasdiqlash</button>
                 </form>
             </div>

@@ -1,17 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from products.forms import EditReviewForm, CreateProductForm
-from products.models import Product, ProductReview
+from products.models import Product, ProductReview, Category
 
 
 # Create your views here.
 def home_page(request):
     products = Product.objects.all()
-    search_query = request.GET.get('q', '')
+    categories = Category.objects.all()
+    selected_category_id = request.GET.get('category')
+    search_query = request.GET.get('qidiruv', '')
     if search_query:
         products = products.filter(name__icontains=search_query)
-    context = {'products': products}
+    elif selected_category_id:
+        products = Product.objects.filter(category_id=selected_category_id)
+    else:
+        products = Product.objects.all()
+    context = {'products': products, 'categories': categories}
+
     return render(request, 'index.html', context)
+
 
 
 def detail_page(request, slug):

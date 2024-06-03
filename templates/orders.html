@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+    <div class="col-md 12">
+        <div class="row">
+            <div class="col-md-12 py-5">
+                <ul class="list-group">
+                    {% for order in orders %}
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p>{{ order.product.name }}</p>
+                            <p>{{ order.user.username }}</p>
+                            <p>{{ order.order_date }}</p>
+                            <p>{{ order.address }}</p>
+
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

@@ -14,3 +14,15 @@ def create_order(request, slug):
     else:
         product = get_object_or_404(Product, slug=slug)
     return render(request, 'create_order.html', {'product': product})
+
+
+def my_orders_page(request):
+    orders = Order.objects.all().filter(user=request.user).order_by('-order_date')
+    context = {'orders': orders}
+    return render(request, 'orders.html', context)
+
+
+def all_orders_page(request):
+    orders = Order.objects.all().order_by('-order_date')
+    context = {'orders': orders}
+    return render(request, 'orders.html', context)
